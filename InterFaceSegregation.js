@@ -97,5 +97,6 @@ class Scanner {
 
 // Multiple inheritance
 class Photocopier {
-
+    print() {}
+    scan() {}
 }
