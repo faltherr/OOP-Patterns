@@ -16,8 +16,8 @@ class Person {
     }
 }
 
-// Store the relationships between people
 // Low-Level module (Close to the module)
+// Store the relationships between people
 class Relationships_OLD {
     constructor() {
         this.data = [];
@@ -28,6 +28,20 @@ class Relationships_OLD {
             type: Relationship.parent,
             to: child
         })
+    }
+}
+
+// High level module
+// Define the relationships between different people
+class Research_OLD {
+    constructor(relationships) {
+        // find all children of john
+        let relations = relationships.data
+        for (let rel of relations.filter (r => 
+            r.from.name === 'John' && r.type === Relationship.parent))
+        {
+            console.log(`John has a child named ${rel.to.name}`)
+        }
     }
 }
 
@@ -63,19 +77,7 @@ class Relationships extends RelationshipBrowser {
     }
 }
 
-// High level module
-// Define the relationships between different people
-class Research_OLD {
-    constructor(relationships) {
-        // find all children of john
-        let relations = relationships.data
-        for (let rel of relations.filter (r => 
-            r.from.name === 'John' && r.type === Relationship.parent))
-        {
-            console.log(`John has a child named ${rel.to.name}`)
-        }
-    }
-}
+
 class Research {
     constructor(browser) {
         for (let p of browser.findAllChildrenOf('John')){
